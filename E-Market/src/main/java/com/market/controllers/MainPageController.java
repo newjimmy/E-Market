@@ -8,6 +8,6 @@ public class MainPageController {
 
     @RequestMapping({"/", "/home"})
     public String getMainPage() {
-        return "WEB-INF/pages/home.jsp";
+        return "home";
     }
 }
