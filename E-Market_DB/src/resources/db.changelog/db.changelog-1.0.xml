@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <changeSet author="Igor.Dzyombak" id="changelog-1.0">
+        <comment>Create table with main car parameters</comment>
+        <createTable tableName="car">
+            <column name="id" type="integer" autoIncrement="true"/>
+            <column name="model" type="varchar(255)"/>
+            <column name="year" type="integer"/>
+            <column name="mileage" type="integer"/>
+            <column name="price" type="integer"/>
+        </createTable>
+        <addPrimaryKey constraintName="car_pk" tableName="car" columnNames="id"/>
+        <rollback>
+            <dropTable tableName="car"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="changelog-1.1" author="Igor.Dzyombak">
+        <comment>Filling table "car" with data</comment>
+    </changeSet>
+</databaseChangeLog>
