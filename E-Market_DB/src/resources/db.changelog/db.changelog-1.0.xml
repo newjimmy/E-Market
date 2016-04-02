@@ -21,5 +21,24 @@
 
     <changeSet id="changelog-1.1" author="Igor.Dzyombak">
         <comment>Filling table "car" with data</comment>
+
+        <insert tableName="car">
+            <column name="model">Lada Sedan</column>
+            <column name="year">1990</column>
+            <column name="mileage">150000</column>
+            <column name="price">1000</column>
+        </insert>
+
+        <sql>
+            insert into car(model, year, mileage, price) values('Ford', 1995, 120000, 5000);
+            insert into car(model, year, mileage, price) values('Volvo', 2000, 70000, 7000);
+            insert into car(model, year, mileage, price) values('Opel', 2003, 50000, 8000);
+        </sql>
+
+        <rollback>
+            <delete tableName="car">
+                <where>model in('Lada Sedan', 'Ford', 'Volvo', 'Opel')</where>
+            </delete>
+        </rollback>
     </changeSet>
 </databaseChangeLog>
