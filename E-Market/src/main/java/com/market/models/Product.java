@@ -1,11 +1,19 @@
 package com.market.models;
 
-public class ProductsTable {
-    int id;
-    String model;
-    int year;
-    int mileage;
-    int price;
+public class Product {
+    private int id;
+    private String model;
+    private int year;
+    private int mileage;
+    private int price;
+
+    public Product(int id, String model, int year, int mileage, int price) {
+        this.id = id;
+        this.model = model;
+        this.year = year;
+        this.mileage = mileage;
+        this.price = price;
+    }
 
     public int getId() {
         return id;
