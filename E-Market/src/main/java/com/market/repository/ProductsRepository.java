@@ -19,7 +19,7 @@ public class ProductsRepository {
 
     private final static String QUERY_FETCH_PRODUCTS = "select id, model, year, mileage, price from car";
 
-    public List<Product> getFetchProducts() {
+    public List<Product> getAllProducts() {
         return jdbcTemplate.query(QUERY_FETCH_PRODUCTS, (resultSet, i) -> {
             return new Product(
                     resultSet.getInt("id"),
