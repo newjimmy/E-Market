@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductDataController {
 
     @Autowired
-    protected ProductService productService;
+    private ProductService productService;
 
     @RequestMapping(value = "/loadListOfProducts")
     @ResponseBody
