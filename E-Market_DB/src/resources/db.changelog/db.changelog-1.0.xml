@@ -41,4 +41,16 @@
             </delete>
         </rollback>
     </changeSet>
+    
+    <changeSet id="changelog-1.2" author="Igor.Dzyombak">
+        <comment>Create table with different categories of products</comment>
+        <createTable tableName="categories">
+            <column name="category_id" type="integer" autoIncrement="true"/>
+            <column name="category_name" type="varchar(255)"/>
+        </createTable>
+        <addPrimaryKey constraintName="categories_pk" tableName="categories" columnNames="category_id"/>
+        <rollback>
+            <dropTable tableName="categories"/>
+        </rollback>
+    </changeSet>
 </databaseChangeLog>
