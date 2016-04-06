@@ -6,7 +6,7 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
     <changeSet author="Igor.Dzyombak" id="changelog-1.0">
         <comment>Create table with main car parameters</comment>
-        
+
         <createTable tableName="car">
             <column name="id" type="integer" autoIncrement="true"/>
             <column name="model" type="varchar(255)"/>
@@ -14,9 +14,9 @@
             <column name="mileage" type="integer"/>
             <column name="price" type="integer"/>
         </createTable>
-        
+
         <addPrimaryKey constraintName="car_pk" tableName="car" columnNames="id"/>
-        
+
         <rollback>
             <dropTable tableName="car"/>
         </rollback>
@@ -44,17 +44,21 @@
             </delete>
         </rollback>
     </changeSet>
-    
+
     <changeSet id="changelog-1.2" author="Igor.Dzyombak">
         <comment>Create table with different categories of products</comment>
-        
+
         <createTable tableName="categories">
             <column name="category_id" type="integer" autoIncrement="true"/>
-            <column name="category_name" type="varchar(255)"/>
+            <column name="body_type" type="varchar(255)"/>
+            <column name="colour" type="varchar(255)"/>
+            <column name="engine_capacity" type="integer"/>
+            <column name="engine_volume" type="integer"/>
+            <column name="max_speed" type="integer"/>
         </createTable>
-        
+
         <addPrimaryKey constraintName="categories_pk" tableName="categories" columnNames="category_id"/>
-        
+
         <rollback>
             <dropTable tableName="categories"/>
         </rollback>
@@ -62,18 +66,16 @@
 
     <changeSet id="changelog-1.3" author="Igor.Dzyombak">
         <comment>Fill categories table with some boilerplate data</comment>
-        
-        <insert tableName="categories">
-            <column name="category_name">Body type</column>
-            <column name="category_name">Colour</column>
-            <column name="category_name">Engine capacity</column>
-            <column name="category_name">Engine volume</column>
-            <column name="category_name">Max speed</column>
-        </insert>
+
+        <sql>
+            insert into categories(body_type, colour, engine_capacity, engine_volume, max_speed) values('sedan', 'black', 120, 2000, 150);
+            insert into categories(body_type, colour, engine_capacity, engine_volume, max_speed) values('wagon', 'white', 190, 2300, 160);
+            insert into categories(body_type, colour, engine_capacity, engine_volume, max_speed) values('coupe', 'red', 250, 3000, 270);
+        </sql>
 
         <rollback>
             <delete tableName="categories">
-                <where>category_name in('Body type', 'Colour', 'Engine capacity','Engine volume', 'Max speed')</where>
+                <where>body_type in('sedan', 'wagon', 'coupe')</where>
             </delete>
         </rollback>
     </changeSet>
