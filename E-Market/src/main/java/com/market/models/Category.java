@@ -2,7 +2,7 @@ package com.market.models;
 
 public class Category {
     private int category_id;
-    private  String body_type;
+    private String body_type;
     private String colour;
     private int engine_capacity;
     private int engine_volume;
