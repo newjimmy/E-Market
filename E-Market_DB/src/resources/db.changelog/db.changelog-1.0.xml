@@ -68,9 +68,12 @@
         <comment>Fill categories table with some boilerplate data</comment>
 
         <sql>
-            insert into categories(body_type, colour, engine_capacity, engine_volume, max_speed) values('sedan', 'black', 120, 2000, 150);
-            insert into categories(body_type, colour, engine_capacity, engine_volume, max_speed) values('wagon', 'white', 190, 2300, 160);
-            insert into categories(body_type, colour, engine_capacity, engine_volume, max_speed) values('coupe', 'red', 250, 3000, 270);
+            insert into categories(body_type, colour, engine_capacity, engine_volume, max_speed) values('sedan',
+            'black', 120, 2000, 150);
+            insert into categories(body_type, colour, engine_capacity, engine_volume, max_speed) values('wagon',
+            'white', 190, 2300, 160);
+            insert into categories(body_type, colour, engine_capacity, engine_volume, max_speed) values('coupe', 'red',
+            250, 3000, 270);
         </sql>
 
         <rollback>
@@ -79,4 +82,58 @@
             </delete>
         </rollback>
     </changeSet>
+
+    <changeSet id="changelog-1.4" author="Igor.Dzyombak">
+        <comment>Create relations between categories and products. Update categories table</comment>
+
+        <sql>
+            alter table categories add constraint categories_fk foreign key (category_id) references car (id) on delete
+            cascade;
+        </sql>
+
+        <rollback>
+            <sql>
+                alter table categories drop constraint categories_fk;
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="changelog-1.5" author="Igor.Dzyombak">
+        <comment>Undo changelog-1.4</comment>
+
+        <sql>
+            alter table categories drop constraint categories_fk;
+        </sql>
+
+        <rollback>
+            alter table categories add constraint categories_fk foreign key (category_id) references car (id) on delete
+            cascade;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="changelog-1.6" author="Igor.Dzyombak">
+        <comment>Expansion table car. Adding column category_id</comment>
+
+        <sql>
+            alter table car add column category_id integer;
+        </sql>
+
+        <rollback>
+            alter table car drop column category_id;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="changelog-1.7" author="Igor.Dzyombak">
+        <comment>Create relations between categories and products. Update categories car</comment>
+
+        <sql>
+            alter table car add constraint car_fk foreign key (category_id) references categories (category_id) on
+            delete no action on update no action;
+        </sql>
+
+        <rollback>
+            alter table car drop constraint car_fk;
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>
