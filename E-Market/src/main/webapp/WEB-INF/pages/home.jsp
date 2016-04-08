@@ -3,7 +3,7 @@
 <head>
     <title>E-market</title>
     <script src="resources/vendor/js/jquery-2.2.2.js" type="application/javascript"></script>
-    <script src="resources/custom/js/ProductJS.js" type="application/javascript"></script>
+    <script src="resources/custom/js/CategoryJS.js" type="application/javascript"></script>
 </head>
 <body>
 Some boilerplate text :)
@@ -13,13 +13,14 @@ Some boilerplate text :)
 <table id="products_table" border="1">
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Year</th>
-        <th>Mileage</th>
+        <th>Body type</th>
+        <th>Colour</th>
+        <th>Engine capacity</th>
+        <th>Engine volume</th>
+        <th>Max speed</th>
     </tr>
     </thead>
-    <tbody id="productsTableBody">
+    <tbody id="categoriesTableBody">
 
     </tbody>
 </table>
