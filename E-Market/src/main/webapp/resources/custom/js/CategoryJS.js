@@ -6,10 +6,36 @@ var CategoryDataController = function () {
     var obj = {};
 
     //private functions will look like this:
-    /**
-     * callback for successful call;
-     * @param data obtained in response
-     */
+
+    function buildProductTable(data) {
+        var $tableBody = $("#products_by_category_id");
+        $tableBody.empty();
+        data.forEach(function (value) {
+            //ints just a bit more convenient way to use jQuery
+            var $row = $("<tr>");
+            $row.append($("<td>").text(value.model))
+                .append($("<td>").text(value.price))
+                .append($("<td>").text(value.year))
+                .append($("<td>").text(value.mileage));
+            $tableBody.append($row);
+        });
+    }
+
+    function loadProductDataByCategory(categoryId) {
+        $.get('loadListOfProductsByCategoryId', {categoryId: categoryId}, buildProductTable)
+    }
+
+    function tableHandler() {
+        var $tableBody = $("#categoriesTableBody");
+        $tableBody.find("[data-category-id]").on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            var $this = $(this);
+            var categoryId = $this.data('category-id');
+            loadProductDataByCategory(categoryId);
+        });
+    }
+
     function onDataLoaded(data) {
         //use '$' prefix when you use jQuery variable - it will be a bit easier to understand
         var $tableBody = $("#categoriesTableBody");
@@ -18,13 +44,14 @@ var CategoryDataController = function () {
         data.forEach(function (value) {
             //ints just a bit more convenient way to use jQuery
             var $row = $("<tr>");
-            $row.append($("<td>").text(value.body_type))
-                .append($("<td>").text(value.colour))
+            $row.append($("<td>").attr('data-category-id', value.category_id).text(value.body_type));
+            $row.append($("<td>").text(value.colour))
                 .append($("<td>").text(value.engine_capacity))
                 .append($("<td>").text(value.engine_volume))
                 .append($("<td>").text(value.max_speed));
             $tableBody.append($row);
         });
+        tableHandler();
     }
 
     /**

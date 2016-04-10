@@ -5,6 +5,7 @@ import com.market.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -19,6 +20,12 @@ public class ProductDataController {
     @ResponseBody
     public List<Product> loadListOfProducts() {
         return productService.getListOfProducts();
+    }
+
+    @RequestMapping(value = "/loadListOfProductsByCategoryId")
+    @ResponseBody
+    public List<Product> loadListOfProductsByCategoryId(@RequestParam int categoryId) {
+        return productService.getListOfProductsByCategoryId(categoryId);
     }
 
 }

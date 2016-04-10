@@ -136,4 +136,20 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="changelog-1.8" author="Igor.Dzyombak">
+        <comment>Adding values category_id into table car</comment>
+
+        <sql>
+            update car set category_id = 1 where id = 1;
+            update car set category_id = 2 where id = 2;
+            update car set category_id = 3 where id = 3;
+            update car set category_id = 2 where id = 4;
+        </sql>
+
+        <rollback>
+            <sql>
+                update car set category_id = null where id in (1, 2, 3, 4);
+            </sql>
+        </rollback>
+    </changeSet>
 </databaseChangeLog>

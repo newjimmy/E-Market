@@ -10,7 +10,7 @@ Some boilerplate text :)
 <br/>
 <br/>
 <br/>
-<table id="products_table" border="1">
+<table id="categories_table" border="1">
     <thead>
     <tr>
         <th>Body type</th>
@@ -23,6 +23,20 @@ Some boilerplate text :)
     <tbody id="categoriesTableBody">
 
     </tbody>
+</table>
+<br/>
+<br/>
+<br/>
+<table id="products_by_category">
+    <thead>
+    <tr>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Mileage</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody id="products_by_category_id"></tbody>
 </table>
 </body>
 </html>
