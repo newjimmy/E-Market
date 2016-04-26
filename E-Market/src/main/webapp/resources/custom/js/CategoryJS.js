@@ -14,9 +14,9 @@ var CategoryDataController = function () {
             //ints just a bit more convenient way to use jQuery
             var $row = $("<tr>");
             $row.append($("<td>").text(value.model))
-                .append($("<td>").text(value.price))
                 .append($("<td>").text(value.year))
-                .append($("<td>").text(value.mileage));
+                .append($("<td>").text(value.mileage))
+                .append($("<td>").text(value.price));
             $tableBody.append($row);
         });
     }
@@ -45,10 +45,6 @@ var CategoryDataController = function () {
             //ints just a bit more convenient way to use jQuery
             var $row = $("<tr>");
             $row.append($("<td>").attr('data-category-id', value.category_id).text(value.body_type));
-            $row.append($("<td>").text(value.colour))
-                .append($("<td>").text(value.engine_capacity))
-                .append($("<td>").text(value.engine_volume))
-                .append($("<td>").text(value.max_speed));
             $tableBody.append($row);
         });
         tableHandler();
