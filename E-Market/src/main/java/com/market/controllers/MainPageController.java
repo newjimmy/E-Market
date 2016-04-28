@@ -10,4 +10,10 @@ public class MainPageController {
     public String getMainPage() {
         return "home";
     }
+
+    @RequestMapping("/login**")
+    public String getLoginPage() {
+        return "login";
+    }
+
 }

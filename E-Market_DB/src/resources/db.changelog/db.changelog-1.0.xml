@@ -8,12 +8,12 @@
         <comment>Create table with main car parameters</comment>
 
         <createTable tableName="car">
-            <column name="id" type="integer" autoIncrement="true"/>
-            <column name="model" type="varchar(255)"/>
-            <column name="year" type="integer"/>
-            <column name="mileage" type="integer"/>
-            <column name="price" type="integer"/>
-        </createTable>
+        <column name="id" type="integer" autoIncrement="true"/>
+        <column name="model" type="varchar(255)"/>
+        <column name="year" type="integer"/>
+        <column name="mileage" type="integer"/>
+        <column name="price" type="integer"/>
+    </createTable>
 
         <addPrimaryKey constraintName="car_pk" tableName="car" columnNames="id"/>
 
