@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <changeSet id="changelog-2.0" author="Igor.Dzyombak">
+        <comment>Create table users in database</comment>
+        <sql>
+            create table users (
+            username VARCHAR(255) NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            CONSTRAINT users_pk PRIMARY KEY (username));
+        </sql>
+
+        <rollback>
+            DROP TABLE users;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
