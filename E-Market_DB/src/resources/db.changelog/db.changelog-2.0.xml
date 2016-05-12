@@ -18,4 +18,21 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="changelog-2.1" author="Igor.Dzyombak">
+        <comment>Create table user_roles in database</comment>
+        <sql>
+            create table user_roles (
+            user_role_id SERIAL NOT NULL,
+            username VARCHAR(255) NOT NULL,
+            user_role VARCHAR(255) NOT NULL,
+            UNIQUE (user_role,username),
+            CONSTRAINT user_roles_pk PRIMARY KEY (user_role_id),
+            CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username));
+        </sql>
+
+        <rollback>
+            drop TABLE user_roles;
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>
