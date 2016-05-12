@@ -35,4 +35,19 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="changelog-2.2" author="Igor.Dzyombak">
+        <comment>Adding user details: username, password, user_roles</comment>
+        <sql>
+            INSERT INTO users (username, password) VALUES ('admin', 'admin123');
+            INSERT INTO users (username, password) VALUES ('user', 'user123');
+            INSERT INTO user_roles (username, user_role) VALUES ('admin', 'ROLE_ADMIN');
+            INSERT INTO user_roles (username, user_role) VALUES ('user', 'ROLE_USER');
+        </sql>
+
+        <rollback>
+            DELETE FROM user_roles WHERE username IN ('admin', 'user');
+            DELETE FROM users WHERE username in ('admin', 'user');
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>
