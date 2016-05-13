@@ -6,6 +6,7 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
+    <beans:import resource="E-market-servlet.xml"/>
     <global-method-security secured-annotations="enabled"/>
 
     <http auto-config="true">
@@ -24,11 +25,10 @@
 
     <authentication-manager>
         <authentication-provider>
-            <user-service>
-                <user name="user" password="abc123" authorities="ROLE_USER"/>
-                <user name="admin" password="root123" authorities="ROLE_ADMIN"/>
-            </user-service>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="SELECT username, password, TRUE FROM users WHERE username = ? "
+                               authorities-by-username-query="SELECT username, user_role FROM user_roles WHERE username = ? "
+            />
         </authentication-provider>
     </authentication-manager>
-
 </beans:beans>

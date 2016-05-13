@@ -1,14 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+
 <head>
     <title>E-market</title>
     <script src="resources/vendor/js/jquery-2.2.2.js" type="application/javascript"></script>
     <script src="resources/custom/js/CategoryJS.js" type="application/javascript"></script>
     <script src="resources/vendor/js/bootstrap.js"></script>
     <link href="resources/vendor/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-
 </head>
+
 <body>
 Dear <strong>${user}</strong>, Welcome to Products page.
 <br/>
@@ -44,4 +45,5 @@ Dear <strong>${user}</strong>, Welcome to Products page.
 <a href="<c:url value="/logout" />">Logout</a>
 </div>
 </body>
+
 </html>
