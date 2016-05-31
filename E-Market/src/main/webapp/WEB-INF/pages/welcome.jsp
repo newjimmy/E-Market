@@ -16,7 +16,12 @@
 <br>
 <br>
 <div class="col-sm-6">
-    <h5><a href="http://localhost:8080/E-Market/login">Please sign in</a></h5>
+    <h5><a href="login">Please sign in</a></h5>
+</div>
+<br>
+<br>
+<div class="col-sm-6">
+    <h5><a href="registration">Please register</a></h5>
 </div>
 </body>
 

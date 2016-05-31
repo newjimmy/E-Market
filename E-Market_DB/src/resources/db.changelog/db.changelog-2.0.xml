@@ -50,4 +50,15 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="changelog-2.3" author="Igor.Dzyombak">
+        <comment>Update users table</comment>
+        <sql>
+            ALTER TABLE users ADD COLUMN email VARCHAR(255);
+        </sql>
+
+        <rollback>
+            ALTER TABLE users DROP COLUMN email;
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>
