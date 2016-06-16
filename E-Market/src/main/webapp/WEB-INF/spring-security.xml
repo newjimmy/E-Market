@@ -29,6 +29,12 @@
                                users-by-username-query="SELECT username, password, TRUE FROM users WHERE username = ? "
                                authorities-by-username-query="SELECT username, user_role FROM user_roles WHERE username = ? "
             />
+            <password-encoder ref="encoder"/>
         </authentication-provider>
     </authentication-manager>
+
+    <beans:bean id="encoder"
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <beans:constructor-arg name="strength" value="11"/>
+    </beans:bean>
 </beans:beans>

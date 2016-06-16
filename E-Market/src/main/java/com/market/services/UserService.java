@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    @Autowired
+    private DictionaryService dictionaryService;
 
     @Autowired
     private UserRepository userRepository;
 
-    public void save(User user){
-        userRepository.setUserDetails(user);
+    public void save(User user) {
+        int userId = userRepository.setUserDetails(user);
+        int roleId = dictionaryService.getRoleId("ROLE_USER");
+        userRepository.setUserRole(roleId, userId);
     }
 }

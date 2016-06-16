@@ -61,4 +61,18 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="changelog-2.4" author="Igor.Dzyombak">
+        <comment>Delete constraint</comment>
+        <sql>
+            ALTER TABLE user_roles DROP CONSTRAINT fk_username;
+            ALTER TABLE user_roles DROP CONSTRAINT user_roles_pk;
+            ALTER TABLE users DROP CONSTRAINT users_pk;
+        </sql>
+
+        <rollback>
+            ALTER TABLE users ADD CONSTRAINT users_pk PRIMARY KEY (username);
+            ALTER TABLE user_roles ADD CONSTRAINT user_roles_pk PRIMARY KEY (user_role_id);
+            ALTER TABLE user_roles ADD CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username);
+        </rollback>
+    </changeSet>
 </databaseChangeLog>
